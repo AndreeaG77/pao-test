@@ -51,4 +51,11 @@ public class Client {
     public Carte getCarteImprumutataReturnata() {return carteImprumutataReturnata;}
     public void setCarteImprumutataReturnata(Carte carteImprumutataReturnata) {this.carteImprumutataReturnata = carteImprumutataReturnata;}
 
+    @Override
+    public String toString() {
+        return "Nume client: " + nume + " " + prenume +
+                ", cnp: " + cnp +
+                ", data Imprumutarii/Returnarii: " + dataImprumutariiReturului +
+                ", carte Imprumutata/Returnata: " + carteImprumutataReturnata.getNume();
+    }
 }

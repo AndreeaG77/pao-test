@@ -45,12 +45,9 @@ public class Autor {
 
     @Override
     public String toString() {
-        return "Autor{" +
-                "nume='" + nume + '\'' +
-                ", prenume='" + prenume + '\'' +
-                ", dataNasterii='" + dataNasterii + '\'' +
-                ", dataDecesului='" + dataDecesului + '\'' +
-                '}';
+        return  prenume + " " + nume +
+                " - Data Nasterii: " + dataNasterii +
+                " - Data Decesului: " + dataDecesului;
     }
 
 }

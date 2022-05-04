@@ -2,44 +2,45 @@ package ClasaMain;
 
 import Clase.*;
 import ClaseServiciu.*;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Bibliotecar a1 = new Bibliotecar("Popescu", "Alexandru", "II");
-        Bodyguard a2 = new Bodyguard("Vasilescu", "Robert", "BGS");
-        Angajat[] ang = {a1,a2};
+    public static void main(String[] args) throws IOException{
 
-        Autor aut1 = new Autor("Rebreanu", "Liviu", "27-nov-1885", "1-sep-1944");
-        Autor aut2 = new Autor("Dickens", "Charles", "7-feb-1812", "9-jun-1870");
-        Autor aut3 = new Autor("Caragiale", "Ion Luca", "13-feb-1852", "9-jun-1912");
-        Autor aut4 = new Autor("Shakespeare", "William", "26-apr-1564", "23-apr-1616");
-        Autor[] aut = {aut1, aut2, aut3, aut4};
+        ServiciuCitire sCitire = new ServiciuCitire();
+        Autor[] aut = {};
+        Carte[] c = {};
+        Angajat[] ang = {};
+        Sectiune[] s = {};
 
-        Carte c1 = new Carte("Ion", aut1);
-        Carte c2 = new Carte("Padurea Spanzuratilor", aut1);
-        Carte c3 = new Carte("Amandoi", aut1);
-        Carte c4 = new Carte("Marile Sperante", aut2);
-        Carte c5 = new Carte("Colind de craciun", aut2);
-        Carte c6 = new Carte("David Copperfield", aut2);
-        Carte c7 = new Carte("O noapte furtunoasa", aut3);
-        Carte c8 = new Carte("Napasta", aut3);
-        Carte c9 = new Carte("O faclie de Paste", aut3);
-        Carte c10 = new Carte("Imblanzirea scorpiei", aut4);
-        Carte c11 = new Carte("Visul unei nopti de vara", aut4);
-        Carte c12 = new Carte("Romeo si Julieta", aut4);
-        Carte[] c = {c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12};
+        try{
+            aut = sCitire.citireAutori();
 
-        Carte[] carti1 = {c5,c6,c9};
-        Carte[] carti2 = {c7,c10,c11};
-        Carte[] carti3 = {c8,c12};
-        Carte[] carti4 = {c4,c1,c2,c3};
-        Sectiune s1 = new Sectiune("Nuvela", carti1);
-        Sectiune s2 = new Sectiune("Comedie", carti2);
-        Sectiune s3 = new Sectiune("Drama", carti3);
-        Sectiune s4 = new Sectiune("Roman", carti4);
-        Sectiune[] s = {s1,s2,s3,s4};
+        } catch (IOException e) {
+            System.out.print("eroare la citire");
+        }
+
+        try{
+            c = sCitire.citireCarti();
+        } catch (IOException e) {
+            System.out.print("eroare la citire");
+        }
+
+        try{
+            s = sCitire.citireSectiune(c);
+        } catch (IOException e) {
+            System.out.print("eroare la citire");
+        }
+
+        try{
+            ang = sCitire.citireAngajati();
+        } catch (IOException e) {
+            System.out.print("eroare la citire");
+        }
 
         Client[] clImprumut = {};
         Client[] clRetur = {};
@@ -47,6 +48,8 @@ public class Main {
         ServiciuAngajat sa = new ServiciuAngajat();
         ServiciuCarte sc = new ServiciuCarte();
         ServiciuClient scl = new ServiciuClient();
+
+        ServiciuScriereGeneric ssg = new ServiciuScriereGeneric();
 
         Scanner scanner;
         scanner = new Scanner(System.in);
@@ -74,10 +77,12 @@ public class Main {
                         switch(com1){
                             case 1:{
                                 sa.vizualizareAngajati(ang);
+                                ssg.scriereGenerica("VIZUALIZARE ANGAJATI", null);
                                 break;
                             }
                             case 2:{
                                 ang = sa.citireDateAngajatNou(scanner, ang);
+                                ssg.scriereGenerica("AGAUGARE ANGAJAT", null);
                                 break;
                             }
                             case 3:{
@@ -85,10 +90,12 @@ public class Main {
                                 System.out.println("Alege un index intre 1 si " + l + " pentru a concedia angajatul cu indexul respectiv");
                                 int idx = scanner.nextInt();
                                 ang = sa.eliminaAngajat(ang, idx);
+                                ssg.scriereGenerica("CONCEDIERE ANGAJAT", null);
                                 break;
                             }
                             case 4:{
                                 sc.vizualizareListe(clImprumut, clRetur);
+                                ssg.scriereGenerica("VIZUALIZARE LISTA CARTI IMPRUMUTATE/RETURNATE", null);
                                 break;
                             }
                             case 10:{
@@ -119,34 +126,43 @@ public class Main {
                         switch(com2){
                             case 1:{
                                 sc.vizualizeazaCarti(c);
+                                ssg.scriereGenerica("VIZUALIZARE CARTI", null);
                                 break;
                             }
                             case 2:{
                                 sc.vizualizeazaAutori(aut);
+                                ssg.scriereGenerica("VIZUALIZARE AUTORI", null);
                                 break;
                             }
                             case 3:{
                                 sc.vizualizeazaSectiuni(s);
+                                ssg.scriereGenerica("VIZUALIZARE SECTIUNI", null);
                                 break;
                             }
                             case 4:{
                                 System.out.println("Introduceti numele autorului: ");
                                 String nume = scanner.next();
                                 sc.vizualizeazaCartiDupaAutor(nume,c);
+                                ssg.scriereGenerica("VIZUALIZARE CARTI DUPA AUTOR", null);
                                 break;
                             }
                             case 5:{
                                 System.out.println("Introduceti numele sectiunii: ");
                                 String nume = scanner.next();
                                 sc.vizualizeazaCartiDupaSectiune(nume,s);
+                                ssg.scriereGenerica("VIZUALIZARE CARTI DUPA SECTIUNE", null);
                                 break;
                             }
                             case 6:{
                                 clImprumut = scl.citireDateClientImprumut(scanner, clImprumut, c);
+                                ssg.scriereGenerica("IMPRUMUTARE CARTE", null);
+                                ssg.scriereGenerica(clImprumut[clImprumut.length-1], "ListaClientiImprumut.txt");
                                 break;
                             }
                             case 7:{
                                 clRetur = scl.citireDateClientRetur(scanner, clRetur, clImprumut, c);
+                                ssg.scriereGenerica(clRetur[clRetur.length-1], "ListaClientiRetur.txt");
+                                ssg.scriereGenerica("RETURNARE CARTE", null);
                                 break;
                             }
                             case 10:{
