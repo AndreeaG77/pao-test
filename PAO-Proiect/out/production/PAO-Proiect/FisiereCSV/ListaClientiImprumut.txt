@@ -1,1 +1,0 @@
-Nume client: aa dd, cnp: 12, data Imprumutarii/Returnarii: 2022-05-04, carte Imprumutata/Returnata: Ion
