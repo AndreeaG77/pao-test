@@ -2,20 +2,19 @@ package ClasaMain;
 
 import Clase.*;
 import ClaseServiciu.*;
-
+import java.util.ArrayList;
+import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws IOException{
-
-        ServiciuCitire sCitire = new ServiciuCitire();
-        Autor[] aut = {};
-        Carte[] c = {};
-        Angajat[] ang = {};
-        Sectiune[] s = {};
+        ServiciuCitire sCitire = ServiciuCitire.getSeriviciuCitire();
+        ArrayList<Autor> aut = new ArrayList<>();
+        ArrayList<Carte> c = new ArrayList<>();
+        ArrayList<Angajat> ang = new ArrayList<>();
+        ArrayList<Sectiune> s = new ArrayList<>();
 
         try{
             aut = sCitire.citireAutori();
@@ -42,14 +41,14 @@ public class Main {
             System.out.print("eroare la citire");
         }
 
-        Client[] clImprumut = {};
-        Client[] clRetur = {};
+        ArrayList<Client> clImprumut = new ArrayList<>();
+        ArrayList<Client> clRetur = new ArrayList<>();
 
         ServiciuAngajat sa = new ServiciuAngajat();
         ServiciuCarte sc = new ServiciuCarte();
         ServiciuClient scl = new ServiciuClient();
 
-        ServiciuScriereGeneric ssg = new ServiciuScriereGeneric();
+        ServiciuScriereGeneric ssg = ServiciuScriereGeneric.getServiciuScriereGeneric();
 
         Scanner scanner;
         scanner = new Scanner(System.in);
@@ -86,7 +85,7 @@ public class Main {
                                 break;
                             }
                             case 3:{
-                                int l = ang.length;
+                                int l = ang.size();
                                 System.out.println("Alege un index intre 1 si " + l + " pentru a concedia angajatul cu indexul respectiv");
                                 int idx = scanner.nextInt();
                                 ang = sa.eliminaAngajat(ang, idx);
@@ -156,12 +155,12 @@ public class Main {
                             case 6:{
                                 clImprumut = scl.citireDateClientImprumut(scanner, clImprumut, c);
                                 ssg.scriereGenerica("IMPRUMUTARE CARTE", null);
-                                ssg.scriereGenerica(clImprumut[clImprumut.length-1], "ListaClientiImprumut.txt");
+                                ssg.scriereGenerica(clImprumut.get(clImprumut.size()-1), "ListaClientiImprumut.txt");
                                 break;
                             }
                             case 7:{
                                 clRetur = scl.citireDateClientRetur(scanner, clRetur, clImprumut, c);
-                                ssg.scriereGenerica(clRetur[clRetur.length-1], "ListaClientiRetur.txt");
+                                ssg.scriereGenerica(clRetur.get(clRetur.size()-1), "ListaClientiRetur.txt");
                                 ssg.scriereGenerica("RETURNARE CARTE", null);
                                 break;
                             }

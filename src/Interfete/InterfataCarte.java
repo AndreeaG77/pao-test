@@ -5,16 +5,18 @@ import Clase.Carte;
 import Clase.Client;
 import Clase.Sectiune;
 
+import java.util.ArrayList;
+
 public interface InterfataCarte {
-    void vizualizareListe(Client[] clImpr, Client[] clRetur);
+    void vizualizareListe(ArrayList<Client> clImprumut, ArrayList<Client> clRetur);
 
-    void vizualizeazaAutori(Autor[] aut);
+    void vizualizeazaAutori(ArrayList<Autor> aut);
 
-    void vizualizeazaCarti(Carte[] c);
+    void vizualizeazaCarti(ArrayList<Carte> c);
 
-    void vizualizeazaSectiuni(Sectiune[] s);
+    void vizualizeazaSectiuni(ArrayList<Sectiune> s);
 
-    void vizualizeazaCartiDupaAutor(String nume, Carte[] c);
+    void vizualizeazaCartiDupaAutor(String nume, ArrayList<Carte> c);
 
-    void vizualizeazaCartiDupaSectiune(String nume, Sectiune[] s);
+    void vizualizeazaCartiDupaSectiune(String nume, ArrayList<Sectiune> s);
 }

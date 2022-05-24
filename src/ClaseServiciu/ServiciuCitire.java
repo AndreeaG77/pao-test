@@ -4,95 +4,115 @@ import Clase.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class ServiciuCitire {
-    public Angajat[] citireAngajati() throws IOException{
-        Angajat[] ang = {};
+
+    private static ServiciuCitire sc;
+
+    private ServiciuCitire() {}
+
+    public static ServiciuCitire getSeriviciuCitire() {
+        if (sc == null)
+            sc = new ServiciuCitire();
+        return sc;
+    }
+
+    public ArrayList<Angajat> citireAngajati() throws IOException{
+        ArrayList<Angajat> ang = new ArrayList<>();
         try {
-            Scanner scaner = new Scanner(new File("C:\\Users\\CiuriBuri.CiuriBuri-PC\\Desktop\\pao\\pao_lab_2022\\PAO-Proiect\\src\\FisiereCSV\\Angajat.txt"));
+            String path = System.getProperty("user.dir") + "\\src\\FisiereCSV\\Angajat.txt";
+            Scanner scaner = new Scanner(new File(path));
             scaner.useDelimiter(",");
             Bibliotecar a1 = new Bibliotecar(scaner.next(),scaner.next(),scaner.next());
             Bodyguard a2 = new Bodyguard(scaner.next().strip(),scaner.next(),scaner.next());
 
-            ang = Arrays.copyOf(ang, ang.length + 1);
-            ang[ang.length - 1] = a1;
-            ang = Arrays.copyOf(ang, ang.length + 1);
-            ang[ang.length - 1] = a2;
+            ang.add(a1);
+            ang.add(a2);
 
             return ang;
         } catch (IOException e) {
-            System.out.print("eroare la citire");
+            System.out.print("Eroare la citire Angajat");
         }
         return ang;
     }
 
-    public Autor[] citireAutori() throws IOException{
-        Autor[] aut = {};
+    public ArrayList<Autor> citireAutori() throws IOException{
+        ArrayList<Autor> aut = new ArrayList<>();
         try {
-            Scanner scaner = new Scanner(new File("C:\\Users\\CiuriBuri.CiuriBuri-PC\\Desktop\\pao\\pao_lab_2022\\PAO-Proiect\\src\\FisiereCSV\\Autor.txt"));
+            String path = System.getProperty("user.dir") + "\\src\\FisiereCSV\\Autor.txt";
+            Scanner scaner = new Scanner(new File(path));
             scaner.useDelimiter(",");
             while (scaner.hasNext()) {
                 Autor a = new Autor(scaner.next().strip(),scaner.next(),scaner.next(),scaner.next());
-                aut = Arrays.copyOf(aut, aut.length + 1);
-                aut[aut.length - 1] = a;
+                aut.add(a);
             }
             return aut;
         } catch (IOException e) {
-            System.out.print("eroare la citire");
+            System.out.print("Eroare la citire Autor");
         }
         return aut;
     }
 
-    public Carte[] citireCarti() throws IOException{
-        Carte[] c = {};
+    public ArrayList<Carte> citireCarti() throws IOException{
+        ArrayList<Carte> c = new ArrayList<>();
         try {
-            Scanner scaner = new Scanner(new File("C:\\Users\\CiuriBuri.CiuriBuri-PC\\Desktop\\pao\\pao_lab_2022\\PAO-Proiect\\src\\FisiereCSV\\Carte.txt"));
+            String path = System.getProperty("user.dir") + "\\src\\FisiereCSV\\Carte.txt";
+            Scanner scaner = new Scanner(new File(path));
             scaner.useDelimiter(",");
             while (scaner.hasNext()) {
                 String numeCarte = scaner.next().strip();
                 Autor a = new Autor(scaner.next(),scaner.next(),scaner.next(),scaner.next());
                 Carte crt = new Carte(numeCarte, a);
-                c = Arrays.copyOf(c, c.length + 1);
-                c[c.length - 1] = crt;
+                c.add(crt);
             }
             return c;
         } catch (IOException e) {
-            System.out.print("eroare la citire");
+            System.out.print("Eroare la citire Carte");
         }
         return c;
     }
 
-    public Sectiune[] citireSectiune(Carte[] c) throws IOException{
-        Sectiune[] s = {};
+    public ArrayList<Sectiune> citireSectiune(ArrayList<Carte> c) throws IOException{
+        ArrayList<Sectiune> s = new ArrayList<>();
         try {
-            Scanner scaner = new Scanner(new File("C:\\Users\\CiuriBuri.CiuriBuri-PC\\Desktop\\pao\\pao_lab_2022\\PAO-Proiect\\src\\FisiereCSV\\Sectiune.txt"));
+            String path = System.getProperty("user.dir") + "\\src\\FisiereCSV\\Sectiune.txt";
+            Scanner scaner = new Scanner(new File(path));
             scaner.useDelimiter(",");
 
-            Carte[] carti1 = {c[4],c[5],c[8]};
+            ArrayList<Carte> carti1 = new ArrayList<>();
+            carti1.add(c.get(4));
+            carti1.add(c.get(5));
+            carti1.add(c.get(8));
             Sectiune s1 = new Sectiune(scaner.next(), carti1);
-            s = Arrays.copyOf(s, s.length + 1);
-            s[s.length - 1] = s1;
+            s.add(s1);
 
-            Carte[] carti2 = {c[6],c[9],c[10]};
+            ArrayList<Carte> carti2 = new ArrayList<>();
+            carti2.add(c.get(6));
+            carti2.add(c.get(9));
+            carti2.add(c.get(10));
             Sectiune s2 = new Sectiune(scaner.next(), carti2);
-            s = Arrays.copyOf(s, s.length + 1);
-            s[s.length - 1] = s2;
+            s.add(s2);
 
-            Carte[] carti3 = {c[7],c[11]};
+            ArrayList<Carte> carti3 = new ArrayList<>();
+            carti3.add(c.get(7));
+            carti3.add(c.get(11));
             Sectiune s3 = new Sectiune(scaner.next(), carti3);
-            s = Arrays.copyOf(s, s.length + 1);
-            s[s.length - 1] = s3;
+            s.add(s3);
 
-            Carte[] carti4 = {c[3],c[0],c[2],c[3]};
+            ArrayList<Carte> carti4 = new ArrayList<>();
+            carti4.add(c.get(3));
+            carti4.add(c.get(0));
+            carti4.add(c.get(2));
+            carti4.add(c.get(3));
             Sectiune s4 = new Sectiune(scaner.next(), carti4);
-            s = Arrays.copyOf(s, s.length + 1);
-            s[s.length - 1] = s4;
+            s.add(s4);
 
             return s;
         } catch (IOException e) {
-            System.out.print("eroare la citire");
+            System.out.print("Eroare la citire sectiune");
         }
         return s;
     }

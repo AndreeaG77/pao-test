@@ -2,14 +2,13 @@ package Interfete;
 
 import Clase.Angajat;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public interface InterfataAngajat {
-    void vizualizareAngajati(Angajat[] ang);
+    void vizualizareAngajati(ArrayList<Angajat> ang);
 
-    Angajat[] adaugaAngajat(Angajat[] ang, Angajat a);
+    ArrayList<Angajat> citireDateAngajatNou(Scanner scanner, ArrayList<Angajat> ang);
 
-    Angajat[] citireDateAngajatNou(Scanner scanner, Angajat[] ang);
-
-    Angajat[] eliminaAngajat(Angajat[] ang, int idx);
+    ArrayList<Angajat> eliminaAngajat(ArrayList<Angajat> ang, int idx);
 }

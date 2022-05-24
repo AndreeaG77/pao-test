@@ -5,11 +5,12 @@ import Clase.Client;
 import Interfete.InterfataClient;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class ServiciuClient implements InterfataClient {
-    public Client[] citireDateClientImprumut(Scanner scanner, Client[] clImpr, Carte[] c){
+    public ArrayList<Client> citireDateClientImprumut(Scanner scanner, ArrayList<Client> clImpr, ArrayList<Carte> c){
         System.out.println("Introduceti datele personale: ");
         System.out.println("Nume: ");
         String nume = scanner.next();
@@ -30,14 +31,14 @@ public class ServiciuClient implements InterfataClient {
                 int nr = carteImprumutata.getNrExemplare();
                 nr--;
                 carteImprumutata.setNrExemplare(nr);
-                clImpr = adaugaClient(clImpr, cl);
+                clImpr.add(cl);
             } else System.out.println("Carte indisponibila");
         }
         else System.out.println("Nume invalid");
         return clImpr;
     }
 
-    public Client[] citireDateClientRetur(Scanner scanner, Client[] clRetur, Client[] clImpr, Carte[] c){
+    public ArrayList<Client> citireDateClientRetur(Scanner scanner, ArrayList<Client> clRetur, ArrayList<Client> clImpr, ArrayList<Carte> c){
         System.out.println("Introduceti datele personale: ");
         System.out.println("Nume: ");
         String nume = scanner.next();
@@ -57,7 +58,7 @@ public class ServiciuClient implements InterfataClient {
                 int nr = carteReturnata.getNrExemplare();
                 nr++;
                 carteReturnata.setNrExemplare(nr);
-                clRetur = adaugaClient(clRetur, cl);
+                clRetur.add(cl);
             }
             else System.out.println("Nu exista in istoric imprumutarea cartii " + numeCarte + " facuta de catre clientul cu cnp-ul: " + cnp);
         }
@@ -65,43 +66,37 @@ public class ServiciuClient implements InterfataClient {
         return clRetur;
     }
 
-    public boolean verificaNume(String numeCarte, Carte[] c){
-        for(int i=0; i<c.length; i++){
-            if(numeCarte.equals(c[i].getNume())) return true;
+    public boolean verificaNume(String numeCarte, ArrayList<Carte> c){
+        for(int i=0; i<c.size(); i++){
+            if(numeCarte.equals(c.get(i).getNume())) return true;
         }
         return false;
     }
 
-    public boolean verificaDisponibilitate(String numeCarte, Carte[] c){
-        for(int i=0; i<c.length; i++){
-            if(numeCarte.equals(c[i].getNume())){
-                if(c[i].getNrExemplare()>0) return true;
+    public boolean verificaDisponibilitate(String numeCarte, ArrayList<Carte> c){
+        for(int i=0; i<c.size(); i++){
+            if(numeCarte.equals(c.get(i).getNume())){
+                if(c.get(i).getNrExemplare()>0) return true;
             }
         }
         return false;
     }
 
-    public  Carte gasesteCarte(String numeCarte, Carte[] c){
-        for(int i=0; i<c.length; i++){
-            if(numeCarte.equals(c[i].getNume())){
-                Carte cAux = c[i];
+    public Carte gasesteCarte(String numeCarte, ArrayList<Carte> c){
+        for(int i=0; i<c.size(); i++){
+            if(numeCarte.equals(c.get(i).getNume())){
+                Carte cAux = c.get(i);
                 return cAux;
             }
         }
-        Carte cAux2 = c[0];
-        return c[0];
+        Carte cAux2 = c.get(0);
+        return c.get(0);
     }
 
-    public Client[] adaugaClient(Client[] clArray, Client cl){
-        clArray = Arrays.copyOf(clArray, clArray.length + 1);
-        clArray[clArray.length - 1] = cl;
-        return clArray;
-    }
-
-    public boolean  verificaDate(Client[] clImpr, String cnp, String numeCarte){
-        for(int i=0; i< clImpr.length; i++){
-            Carte caux = clImpr[i].getCarteImprumutataReturnata();
-            if(cnp.equals(clImpr[i].getCnp()) && numeCarte.equals(caux.getNume())) return true;
+    public boolean  verificaDate(ArrayList<Client> clImpr, String cnp, String numeCarte){
+        for(int i=0; i< clImpr.size(); i++){
+            Carte caux = clImpr.get(i).getCarteImprumutataReturnata();
+            if(cnp.equals(clImpr.get(i).getCnp()) && numeCarte.equals(caux.getNume())) return true;
         }
         return false;
     }

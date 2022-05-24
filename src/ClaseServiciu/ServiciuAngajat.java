@@ -5,23 +5,24 @@ import Clase.Bibliotecar;
 import Clase.Bodyguard;
 import Interfete.InterfataAngajat;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class ServiciuAngajat implements InterfataAngajat{
-    public void vizualizareAngajati(Angajat[] ang){
+    public void vizualizareAngajati(ArrayList<Angajat> ang){
         int idx = 0;
-        for(int i=0; i<ang.length; i++) {
+        for(int i=0; i<ang.size(); i++) {
             idx = i+1;
-            System.out.print(idx + ". " + ang[i].getNume() + " ");
-            System.out.println(ang[i].getPrenume());
-            int sal = ang[i].getSalariu();
+            System.out.print(idx + ". " + ang.get(i).getNume() + " ");
+            System.out.println(ang.get(i).getPrenume());
+            int sal = ang.get(i).getSalariu();
             System.out.println("Salariu: " + sal);
-            System.out.println(ang[i].toString());
+            System.out.println(ang.get(i).toString());
         }
     }
 
-    public Angajat[] citireDateAngajatNou(Scanner scanner, Angajat[] ang){
+    public ArrayList<Angajat> citireDateAngajatNou(Scanner scanner, ArrayList<Angajat> ang){
         System.out.println("Adauga informatiile despre noul angajat");
         System.out.println("Nume: ");
         String nume = scanner.next();
@@ -33,29 +34,19 @@ public class ServiciuAngajat implements InterfataAngajat{
             System.out.println("Grad: ");
             String grad = scanner.next();
             Bibliotecar angNou = new Bibliotecar(nume,prenume,grad);
-            ang = adaugaAngajat(ang, angNou);
+            ang.add(angNou);
         }
         else {
             System.out.println("Firma securitate: ");
             String firmaSecuritate = scanner.next();
             Bodyguard angNou = new Bodyguard(nume, prenume, firmaSecuritate);
-            ang = adaugaAngajat(ang, angNou);
+            ang.add(angNou);
         }
         return ang;
     }
 
-    public Angajat[] adaugaAngajat(Angajat[] ang, Angajat a){
-        ang = Arrays.copyOf(ang, ang.length + 1);
-        ang[ang.length - 1] = a;
+    public ArrayList<Angajat> eliminaAngajat(ArrayList<Angajat> ang, int idx){
+        ang.remove(idx-1);
         return ang;
-    }
-
-    public Angajat[] eliminaAngajat(Angajat[] ang, int idx){
-        Angajat[] angAux = new Angajat[ang.length-1];
-        int j = 0;
-        for(int i=0; i< ang.length; i++){
-            if(i != idx-1) angAux[j++] = ang[i];
-        }
-        return angAux;
     }
 }

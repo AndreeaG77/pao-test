@@ -3,20 +3,19 @@ package Interfete;
 import Clase.Carte;
 import Clase.Client;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public interface InterfataClient {
-    Client[] citireDateClientImprumut(Scanner scanner, Client[] clImpr, Carte[] c);
+    ArrayList<Client> citireDateClientImprumut(Scanner scanner, ArrayList<Client> clImpr, ArrayList<Carte> c);
 
-    Client[] citireDateClientRetur(Scanner scanner, Client[] clRetur, Client[] clImpr, Carte[] c);
+    ArrayList<Client> citireDateClientRetur(Scanner scanner, ArrayList<Client> clRetur, ArrayList<Client> clImpr, ArrayList<Carte> c);
 
-    boolean verificaNume(String numeCarte, Carte[] c);
+    boolean verificaNume(String numeCarte, ArrayList<Carte> c);
 
-    boolean verificaDisponibilitate(String numeCarte, Carte[] c);
+    boolean verificaDisponibilitate(String numeCarte, ArrayList<Carte> c);
 
-    Carte gasesteCarte(String numeCarte, Carte[] c);
+    Carte gasesteCarte(String numeCarte, ArrayList<Carte> c);
 
-    Client[] adaugaClient(Client[] clArray, Client cl);
-
-    boolean  verificaDate(Client[] clImpr, String cnp, String numeCarte);
+    boolean  verificaDate(ArrayList<Client> clImpr, String cnp, String numeCarte);
 }

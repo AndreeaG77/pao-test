@@ -1,12 +1,13 @@
 package Clase;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Sectiune {
     private String nume;
-    private Carte[] carti;
+    private ArrayList<Carte> carti;
 
-    public Sectiune(String nume, Carte[] carti){
+    public Sectiune(String nume, ArrayList<Carte> carti){
         this.nume = nume;
         this.carti = carti;
     }
@@ -21,10 +22,10 @@ public class Sectiune {
         this.nume = nume;
     }
 
-    public Carte[] getCarti() {
+    public ArrayList<Carte> getCarti() {
         return carti;
     }
-    public void setCarti(Carte[] carti) {
+    public void setCarti(ArrayList<Carte> carti) {
         this.carti = carti;
     }
 
@@ -32,7 +33,7 @@ public class Sectiune {
     public String toString() {
         return "Sectiune{" +
                 "nume='" + nume + '\'' +
-                ", carti=" + Arrays.toString(carti) +
+                ", carti=" + carti.toString() +
                 '}';
     }
 }

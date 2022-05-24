@@ -1,0 +1,2 @@
+Nume client: Ionescu Andreea, cnp: 12, data Imprumutarii/Returnarii: 2022-05-04, carte Imprumutata/Returnata: Ion
+Nume client: aa tt, cnp: 12, data Imprumutarii/Returnarii: 2022-05-23, carte Imprumutata/Returnata: Ion

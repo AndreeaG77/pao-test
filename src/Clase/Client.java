@@ -58,4 +58,5 @@ public class Client {
                 ", data Imprumutarii/Returnarii: " + dataImprumutariiReturului +
                 ", carte Imprumutata/Returnata: " + carteImprumutataReturnata.getNume();
     }
+
 }
