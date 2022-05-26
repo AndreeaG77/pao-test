@@ -1,0 +1,4 @@
+Rebreanu,Liviu,27-nov-1885,1-sep-1944,
+Dickens,Charles,7-feb-1812,9-jun-1870,
+Caragiale,Ion Luca,13-feb-1852,9-jun-1912,
+Shakespeare,William,26-apr-1564,23-apr-1616

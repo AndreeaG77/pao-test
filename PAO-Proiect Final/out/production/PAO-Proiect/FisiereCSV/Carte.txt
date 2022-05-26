@@ -1,0 +1,12 @@
+Ion,Rebreanu,Liviu,27-nov-1885,1-sep-1944,
+Padurea Spanzuratilor,Rebreanu,Liviu,27-nov-1885,1-sep-1944,
+Amandoi,Rebreanu,Liviu,27-nov-1885,1-sep-1944,
+Marile Sperante,Dickens,Charles,7-feb-1812,9-jun-1870,
+Colind de craciun,Dickens,Charles,7-feb-1812,9-jun-1870,
+David Copperfield,Dickens,Charles,7-feb-1812,9-jun-1870,
+O noapte furtunoasa,Caragiale,Ion Luca,13-feb-1852,9-jun-1912,
+Napasta,Caragiale,Ion Luca,13-feb-1852,9-jun-1912,
+O faclie de Paste,Caragiale,Ion Luca,13-feb-1852,9-jun-1912,
+Imblanzirea scorpiei,Shakespeare,William,26-apr-1564,23-apr-1616,
+Visul unei nopti de vara,Shakespeare,William,26-apr-1564,23-apr-1616,
+Romeo si Julieta,Shakespeare,William,26-apr-1564,23-apr-1616
